@@ -3,16 +3,19 @@ def write_measurements(path, values):
         for value in values:
             f.write(f"{value}\n")
 
-def read_measurements(path):
-    with open(path, "r") as f:
-        content = f.read()
-    return [float(x) for x in content.split() if x]
-    
+def std_dev(values):
+    if not values:
+        return 0
+    mean = sum(values) / len(values)
+    squared_diffs = [(x - mean) ** 2 for x in values]
+    return (sum(squared_diffs) / len(values)) ** 0.5
+
 def summarise(values):
     return sum(values) / len(values) if values else 0
+
+
 
 if __name__ == "__main__":
     data = [12.5, 9.3, 14.1, 11.8, 10.2]
     write_measurements("measurements.txt", data)
-    loaded = read_measurements("measurements.txt")
-    print(f"n={len(loaded)} mean={summarise(loaded):.2f}")
+    print(f"n={len(data)} mean={summarise(data):.2f} std_dev={std_dev(data):.2f}")
