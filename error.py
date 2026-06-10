@@ -17,3 +17,4 @@ def safe_mean(data):
 
 print(safe_mean(data))
 
+
