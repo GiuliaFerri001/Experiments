@@ -1,20 +1,7 @@
-data = []
-def safe_mean(data):
-    try:
-        return sum(data) / len(data)
-    except ZeroDivisionError:
-        print("The data list is empty. Cannot compute mean.")
-        return None 
-    except len(data) == 0:
-        print("The data list is empty. Cannot compute mean.")
-        return None 
-
-    except TypeError:
-        print("Data should be a list of numbers.")
-        return None
-    
-    return sum(data) / len(data)
-
-print(safe_mean(data))
-
-
+def add(a, b):
+    return a + b
+A = [1, 2.0, "add", (1, 2, 3), (1, 2, 4)]
+B = [2, 0.8," me", (-1, 2), (3,) ]
+C = [3, 6.2," too", (4, 5, 6), (4) ]
+T = list(map(add, A, B))
+R = list(map(add, T, C)) # crashes here
